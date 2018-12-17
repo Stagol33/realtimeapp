@@ -52,7 +52,13 @@ class QuestionController extends Controller
      */
     public function update(Request $request, Question $question)
     {
-        $question->update($request->all());
+        $question->update(
+            [
+                'title'=> $request->title,
+                'slug'=>str_slug($request->title),
+                'body'=> $request->body,
+            ]
+        );
         return response('Update', 200);
     }
 
